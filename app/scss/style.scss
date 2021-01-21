@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Prompt:wght@300;400;500;600&display=swap");
+
+$dark: #1f1f1f;
+$gray: #7f7f7f;
+
+$font1: "Prompt", sans-serif;
+$font2: "Open Sans", sans-serif;
+
+@mixin fonts($size: 24px, $weight: 400, $spacing: auto, $family: $font1) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: $spacing;
+}
+
+@mixin cta {
+  font-size: 24px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: center;
+  padding: 18px 30px;
+  background: linear-gradient(104.71deg, #4c4ad7 21.25%, #302db4 67.88%);
+  border-radius: 3px;
+  width: 192px;
+  height: 64px;
+  display: block;
+}
+
+@mixin flex($space: space-between, $align: center) {
+  display: flex;
+  justify-content: $space;
+  align-items: $align;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: $gray;
+  font-size: 16px;
+  @include fonts;
+}
+
+.container {
+  max-width: 1620px;
+  margin: 0 auto;
+}
+
+.header {
+  margin: 64px 0 64px 0;
+
+  .logo {
+    cursor: pointer;
+  }
+}
+
+.offer {
+  display: grid;
+  width: 100%;
+  grid-template-areas: "a b";
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 180px;
+}
+
+.offer-box {
+  grid-area: a;
+  max-width: 383px;
+  margin: 0 auto;
+  &__title {
+    @include fonts(112px, 600);
+    line-height: 112px;
+    color: $dark;
+    letter-spacing: 1%;
+    margin-bottom: 32px;
+  }
+  &__subtitle {
+    display: block;
+    @include fonts(20px, 300, -1%);
+    line-height: 20px;
+    margin-bottom: 32px;
+  }
+  &__desc {
+    @include fonts(24px, 300);
+    line-height: 37px;
+    margin-bottom: 42px;
+  }
+
+  &__cta {
+    @include cta;
+  }
+}
+
+.hero {
+  grid-area: b;
+  width: 1248px;
+  height: 720px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.games {
+  @include flex(center, center);
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: url("../img/games-back.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 180px;
+
+  &__title {
+    @include fonts(72px, 600);
+    text-align: center;
+    max-width: 629px;
+    color: #fff;
+    margin-bottom: 64px;
+  }
+  &__subtitle {
+    @include fonts(27px, 400, -2%);
+    display: block;
+    color: #babec1;
+    margin-bottom: 24px;
+  }
+  &__cta {
+    @include cta;
+  }
+}
+
+.bundle {
+  @include flex(center, center);
+  flex-direction: column;
+  margin-bottom: 144px;
+  &__title {
+    @include fonts(64px, 500, -2%);
+    color: $dark;
+    text-align: center;
+    margin-bottom: 72px;
+    line-height: 64px;
+  }
+  &__subtitle {
+    display: block;
+    @include fonts(27px);
+    color: #5d5d5d;
+    line-height: 27px;
+    margin-bottom: 20px;
+  }
+  &__carousel {
+    @include flex(center, center);
+    flex-direction: column;
+    .slider {
+      width: 1200px;
+      background: #c9c9c9;
+      border-radius: 3px;
+      margin: 0 auto;
+    }
+    .slide {
+      width: 480px;
+      border: 1px solid $dark;
+      background: $dark;
+      border-radius: 3px;
+      margin: 0 auto;
+    }
+  }
+
+  .goods {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    margin: 114px auto 48px auto;
+    &__title {
+      visibility: hidden;
+      @include fonts(42px, 400, auto, $font2);
+      color: $dark;
+      margin-top: 72px;
+      margin-bottom: 16px;
+      text-align: center;
+      line-height: 42px;
+    }
+    &__desc {
+      @include fonts(23px, 400, auto, $font2);
+      display: block;
+      color: $gray;
+    }
+
+    &__item[class*="current"] {
+      .goods__title {
+        visibility: visible;
+      }
+      img {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    &__item {
+      @include flex(center, center);
+      flex-direction: column;
+      margin: 0 auto;
+      img {
+        opacity: 0.48;
+        transform: scale(0.5);
+      }
+    }
+
+    &__item:last-child {
+      display: none;
+    }
+  }
+
+  .cta {
+    @include cta;
+  }
+}
